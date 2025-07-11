@@ -42,3 +42,4 @@ coverage.xml
 # Large data files 
 ./data/Music Info.csv
 ./data/User Listening History.csv
+/transformer.joblib
