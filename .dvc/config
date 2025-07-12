@@ -1,0 +1,4 @@
+[core]
+    remote = music-hybrid-recsys-remote
+['remote "music-hybrid-recsys-remote"']
+    url = s3://music-hybrid-recsys-remote
