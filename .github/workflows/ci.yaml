@@ -34,7 +34,7 @@ jobs:
       - name: Run Appllication
         run: |
           nohup streamlit run app.py --server.port 8000 &
-          sleep 30 
+          sleep 10 
 
       - name: Test App
         run: |
@@ -45,23 +45,23 @@ jobs:
           pkill -f "streamlit run"
   
   
-  CD:
-    needs: CI
-    runs-on: ubuntu-latest
-    steps:
-      - name: Code Checkout
-        uses: actions/checkout@v4
+  # CD:
+  #   needs: CI
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Code Checkout
+  #       uses: actions/checkout@v4
 
-      - name: DVC Pull
-        run: |
-          dvc pull
+  #     - name: DVC Pull
+  #       run: |
+  #         dvc pull
 
-      - name: Configure AWS Credentials
-        uses: aws-actions/configure-aws-credentials@v4
-        with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ap-south-1
+  #     - name: Configure AWS Credentials
+  #       uses: aws-actions/configure-aws-credentials@v4
+  #       with:
+  #         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+  #         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+  #         aws-region: ap-south-1
 
       - name: Login to Amazon ECR
         id: login-ecr
