@@ -43,7 +43,12 @@ jobs:
       - name: Stop Streamlit app
         run: |
           pkill -f "streamlit run"
-
+  
+  
+  CD:
+    needs: CI
+    runs-on: ubuntu-latest
+    steps:
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
