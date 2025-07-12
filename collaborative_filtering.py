@@ -20,6 +20,7 @@ def filter_songs_data(songs_data: pd.DataFrame, track_ids: list, save_df_path: s
     """
 
     # filter data based on track_ids
+    print("SD: ", songs_data.shape)
     filtered_data = songs_data[songs_data["track_id"].isin(track_ids)]
 
     # sort the data by track id
@@ -30,7 +31,7 @@ def filter_songs_data(songs_data: pd.DataFrame, track_ids: list, save_df_path: s
     
     # save the data
     save_pandas_data_to_csv(filtered_data, save_df_path)
-    
+    print("FD: ", filtered_data.shape)
     return filtered_data
 
 
@@ -95,6 +96,7 @@ def create_interaction_matrix(history_data:dd.DataFrame, track_ids_save_path, sa
     interaction_matrix = csr_matrix((values, (row_indices, col_indices)), shape=(n_tracks, n_users))
     
     # save the sparse matrix
+    print("IM: ", interaction_matrix.shape)
     save_sparse_matrix(interaction_matrix, save_matrix_path)
     
     
@@ -154,6 +156,7 @@ def main():
     
     # filter the songs data
     songs_data = pd.read_csv(songs_data_path)
+    print("MAIN", "SD: ", songs_data.shape)
     filter_songs_data(songs_data, unique_track_ids, filtered_data_save_path)
     
     # create the interaction matrix

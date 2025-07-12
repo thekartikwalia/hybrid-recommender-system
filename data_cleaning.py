@@ -19,7 +19,7 @@ def clean_data(data):
 
     return (
         data
-        .drop_duplicates(subset="spotify_id")
+        .drop_duplicates(subset="track_id")
         .drop(columns=["genre", "spotify_id"])
         .fillna({"tags": "no_tags"})
         .assign(
@@ -48,7 +48,7 @@ def data_for_content_filtering(data):
 
     return (
         data
-        .drop(columns=["track_id", "name","spotify_preview_url"])
+        .drop(columns=["track_id", "name", "spotify_preview_url"])
     )
 
 
@@ -63,11 +63,13 @@ def main(data_path):
 
     # load the data 
     data = pd.read_csv(data_path)
+    print("data", data.shape)
 
     # perform data cleaning
     cleaned_data = clean_data(data)
 
     # saved cleaned data
+    print("cleaned", cleaned_data.shape)
     cleaned_data.to_csv("data/cleaned_data.csv", index=False)
 
 
